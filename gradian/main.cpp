@@ -25,13 +25,13 @@ int main()
 	// TODO(Jukki) Error handling if inits fail
 	try
 	{
-		if (!glInitWindow()
-			|| !initCvars()
+		if (!initCvars()
+			|| !glInitWindow()
 			|| !initInput()
 			|| !initShaders()
 			|| !initModels()
 			|| !initDisplay()
-			|| !initText())
+			/*|| !initText()*/)
 			error = true;
 	}
 	catch (MyException& e){

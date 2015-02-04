@@ -23,45 +23,75 @@ enum cvarFlag{
 };
 
 
+class Cvar;
+extern std::map<std::string, Cvar *> cvarList;
 class Cvar
 {
+public:
 	string name = "";
 	string description = "";
 	string value = "";
 	string baseValue = "";
 	cvarFlag flags = NONE;
-public:
 	Cvar(string a, string b) : name(a), description(b)
 	{
+		this->baseValue = this->value;
+
+		cvarList[this->name] = this;
 	}
 	Cvar(string a, string b, int value) : name(a), description(b)
 	{
 		this->value = to_string(value);
+
+		this->baseValue = this->value;
+
+		cvarList[this->name] = this;
 	}
 	Cvar(string a, string b, float value) : name(a), description(b)
 	{
 		this->value = to_string(value);
+
+		this->baseValue = this->value;
+
+		cvarList[this->name] = this;
 	}
 	Cvar(string a, string b, string c) : name(a), description(b), value(c)
 	{
+
+		this->baseValue = this->value;
+
+		cvarList[this->name] = this;
 	}
 
 	Cvar(string a, string b, cvarFlag d) : name(a), description(b), flags(d)
 	{
+
+		this->baseValue = this->value;
+
+		cvarList[this->name] = this;
 	}
 	Cvar(string a, string b, int value, cvarFlag d) : name(a), description(b), flags(d)
 	{
 		this->value = to_string(value);
+
+		this->baseValue = this->value;
+
+		cvarList[this->name] = this;
 	}
 	Cvar(string a, string b, float value, cvarFlag d) : name(a), description(b), flags(d)
 	{
 		this->value = to_string(value);
+
+		this->baseValue = this->value;
+
+		cvarList[this->name] = this;
 	}
 	Cvar(string a, string b, string c, cvarFlag d) : name(a), description(b), value(c), flags(d)
 	{
-	}
+		this->baseValue = this->value;
 
-	void setupCvar();
+		cvarList[this->name] = this;
+	}
 
 	Cvar& operator=(string value)
 	{
@@ -100,5 +130,5 @@ public:
 	}
 };
 
+
 extern int initCvars();
-extern std::map<std::string, Cvar *> cvarList;

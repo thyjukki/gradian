@@ -100,7 +100,6 @@
   <ItemGroup>
     <ClInclude Include="common.hpp" />
     <ClInclude Include="cvar.hpp" />
-    <ClInclude Include="cvarlist.hpp" />
     <ClInclude Include="exception.hpp" />
     <ClInclude Include="gl_draw.hpp" />
     <ClInclude Include="gl_text.hpp" />
