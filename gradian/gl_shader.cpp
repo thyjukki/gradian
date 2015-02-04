@@ -12,7 +12,7 @@
 map<string, Shader *> shaderList;
 
 
-Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath, GLuint type)
+Shader::Shader(string vertexPath, string fragmentPath, GLuint type)
 {
 	this->type = type;
 	// 1. Retrieve the vertex/fragment source code from filePath
@@ -21,8 +21,8 @@ Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath, GLuint type
 	try
 	{
 		// Open files
-		ifstream vShaderFile(vertexPath);
-		ifstream fShaderFile(fragmentPath);
+		ifstream vShaderFile(MAINDIR + vertexPath);
+		ifstream fShaderFile(MAINDIR + fragmentPath);
 		stringstream vShaderStream, fShaderStream;
 		// Read file's buffer contents into streams
 		vShaderStream << vShaderFile.rdbuf();
@@ -36,8 +36,7 @@ Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath, GLuint type
 	}
 	catch (exception e)
 	{
-		cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << endl;
-		debugPrint("ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ\n");
+		throw MyException("ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ");
 	}
 	const GLchar* vShaderCode = vertexCode.c_str();
 	const GLchar * fShaderCode = fragmentCode.c_str();
@@ -98,9 +97,11 @@ Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath, GLuint type
 
 int initShaders()
 {
-	Shader *test = new Shader("../gradian/Shaders/test.vs", "../gradian/Shaders/test.frag", SHADER_2D);
+	Shader *test = new Shader("Shaders/test.vs", "Shaders/test.frag", SHADER_2D);
+	Shader *text = new Shader("Shaders/text.vs", "Shaders/text.frag", SHADER_2D);
 
 	shaderList["test"] = test;
+	shaderList["text"] = text;
 
 	return 1;
 }

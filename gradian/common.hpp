@@ -32,18 +32,21 @@
 // Math and Usefull utilities
 #include "math.hpp"
 
-//Main core class
-#include "Gradian.hpp"
-
-// Input
-#include "input.hpp"
 
 // Shader loading
 #include "shader.hpp"
 #include "GLObject.hpp"
 
+#include "gl_text.hpp"
+
 // Drawing
 #include "gl_draw.hpp"
+
+//Main core class
+#include "Gradian.hpp"
+
+// Input
+#include "input.hpp"
 
 // Textures
 #include "gl_texture.hpp"

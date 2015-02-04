@@ -90,6 +90,7 @@
     <ClCompile Include="gl_init.cpp" />
     <ClCompile Include="gl_model.cpp" />
     <ClCompile Include="gl_shader.cpp" />
+    <ClCompile Include="gl_text.cpp" />
     <ClCompile Include="gl_texture.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -99,8 +100,10 @@
   <ItemGroup>
     <ClInclude Include="common.hpp" />
     <ClInclude Include="cvar.hpp" />
+    <ClInclude Include="cvarlist.hpp" />
     <ClInclude Include="exception.hpp" />
     <ClInclude Include="gl_draw.hpp" />
+    <ClInclude Include="gl_text.hpp" />
     <ClInclude Include="gl_texture.hpp" />
     <ClInclude Include="Gradian.hpp" />
     <ClInclude Include="input.hpp" />
@@ -112,11 +115,14 @@
   <ItemGroup>
     <None Include="Shaders\test.frag" />
     <None Include="Shaders\test.vs" />
-    <None Include="shaders\texture.frag" />
-    <None Include="shaders\texture.vs" />
+    <None Include="shaders\text.frag" />
+    <None Include="shaders\text.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\awesomeface.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Fonts\arial.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

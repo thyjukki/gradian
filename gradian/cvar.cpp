@@ -14,11 +14,18 @@ void Cvar::setupCvar()
 {
 	if (cvarList.count(this->name))
 	{
-		throw new MyException("Tried to define allready defined cvar " + this->name);
+		throw MyException("Tried to define allready defined cvar " + this->name);
 		return;
 	}
 	
 	this->baseValue = this->value;
 
 	cvarList[this->name] = this;
+}
+
+int initCvars()
+{
+#include "cvarlist.hpp"
+
+	return 1;
 }

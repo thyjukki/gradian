@@ -23,12 +23,26 @@ int main()
 	bool error = false;
 
 	// TODO(Jukki) Error handling if inits fail
-	if (!glInitWindow()
-		|| !initInput()
-		|| !initShaders()
-		|| !initModels()
-		|| !initDisplay())
+	try
+	{
+		if (!glInitWindow()
+			|| !initCvars()
+			|| !initInput()
+			|| !initShaders()
+			|| !initModels()
+			|| !initDisplay()
+			|| !initText())
+			error = true;
+	}
+	catch (MyException& e){
+		errorPrint(e.what());
+	}
+	catch (std::exception& e)
+	{
+		errorPrint(e.what());
 		error = true;
+		//Other errors
+	}
 
 	glTexture test = TextureFromFile("awesomeface.png");
 	test_object = new Sprite(test, 0, 0, 100, 100);
@@ -49,10 +63,8 @@ int main()
 			}
 			else running = false;
 		}
-		catch (MyException& e)
-		{
-			std::cout << "MyException caught " << std::endl;
-			std::cout << e.what << std::endl;
+		catch (MyException& e){
+			errorPrint(e.what());
 		}
 		catch (std::exception& e)
 		{

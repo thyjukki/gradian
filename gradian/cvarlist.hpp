@@ -5,14 +5,12 @@
 ** If you found this code without proper credit please contact me
 ** Jussi Joki (judejoki@gmail.com)
 ******************************************************************/
+#pragma once
 
-//this is temp, needs to be edited when not working.
-#define MAINDIR "../gradian/"
+extern Cvar vid_width;
+extern Cvar vid_height;
+extern Cvar r_font;
 
-class Gradian
-{
-public:
-	GLFWwindow* main_window;
-};
-
-extern Gradian gradian;
+vid_width.setupCvar();
+vid_height.setupCvar();
+r_font.setupCvar();

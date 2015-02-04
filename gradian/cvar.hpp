@@ -93,5 +93,12 @@ public:
 	{
 		return (float)atof(this->value.c_str());
 	}
+
+	string toString()
+	{
+		return this->value;
+	}
 };
+
+extern int initCvars();
 extern std::map<std::string, Cvar *> cvarList;

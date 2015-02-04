@@ -19,6 +19,9 @@
     <Filter Include="Resource Files\Textures">
       <UniqueIdentifier>{086a4c76-3955-456e-926b-256361be1a1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\fonts">
+      <UniqueIdentifier>{5ada822e-d6af-41a2-adb5-991e09f188e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,6 +55,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cvar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gl_text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -89,18 +95,24 @@
     <ClInclude Include="exception.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gl_text.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cvarlist.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\texture.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shaders\texture.vs">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="Shaders\test.frag">
       <Filter>Shaders</Filter>
     </None>
     <None Include="Shaders\test.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shaders\text.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="shaders\text.vs">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
@@ -108,5 +120,10 @@
     <Image Include="Textures\awesomeface.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Fonts\arial.ttf">
+      <Filter>Resource Files\fonts</Filter>
+    </Font>
   </ItemGroup>
 </Project>

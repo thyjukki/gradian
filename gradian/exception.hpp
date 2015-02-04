@@ -10,15 +10,13 @@
 #include <exception>
 using namespace std;
 
-class MyException : public exception
-{
+class MyException :public exception{
 public:
-	const char  *what;
-	MyException(string msg)
-	{
-		this->what = msg.c_str();
-	}
-
+	MyException(const string m = "my custom exception") :msg(m){}
+	//~MyException(void);
+	const char* what(){ return msg.c_str(); }
+private:
+	string msg;
 };
 
 // TODO(Get this to work)
