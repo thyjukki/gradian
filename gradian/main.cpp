@@ -31,7 +31,7 @@ int main()
 		error = true;
 
 	glTexture test = TextureFromFile("awesomeface.png");
-	test_object = new Sprite(test, 50, 50, 100, 100);
+	test_object = new Sprite(test, 0, 0, 100, 100);
 	test_object2 = new Sprite(test, 100, 100, 200, 200);
 
 	while (running && !error)

@@ -14,7 +14,8 @@
 */
 void reshape(GLFWwindow* window, int w, int h)
 {
-
+	window_height = h;
+	window_width = w;
 	if (h == 0)
 		h = 1;
 

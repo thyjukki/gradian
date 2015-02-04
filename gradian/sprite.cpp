@@ -50,7 +50,6 @@ void Sprite::Draw(Shader *s)
 {
 	glm::mat4 projection = glm::ortho(0.0f, (float)window_width, (float)window_height, 0.0f, -1.0f, 1.0f);
 
-	this->angle = (float)glfwGetTime() * 10.0f;
 	glm::mat4 model;
 	model = glm::translate(model, glm::vec3(this->origin, 0.0f));
 
