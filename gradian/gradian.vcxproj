@@ -84,6 +84,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cvar.cpp" />
     <ClCompile Include="gl_display.cpp" />
     <ClCompile Include="gl_draw.cpp" />
     <ClCompile Include="gl_init.cpp" />
@@ -97,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.hpp" />
+    <ClInclude Include="cvar.hpp" />
+    <ClInclude Include="exception.hpp" />
     <ClInclude Include="gl_draw.hpp" />
     <ClInclude Include="gl_texture.hpp" />
     <ClInclude Include="Gradian.hpp" />

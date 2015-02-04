@@ -7,6 +7,9 @@
 ******************************************************************/
 
 #include "common.hpp"
+
+Cvar vid_width = Cvar("vid_width", "Stores windows width", 800, NONE);
+Cvar vid_height = Cvar("vid_height", "Stores windows height", 600, NONE);
 /*
 	void reshape (w, h)
 
@@ -14,8 +17,8 @@
 */
 void reshape(GLFWwindow* window, int w, int h)
 {
-	window_height = h;
-	window_width = w;
+	vid_height = h;
+	vid_width = w;
 	if (h == 0)
 		h = 1;
 
@@ -24,5 +27,7 @@ void reshape(GLFWwindow* window, int w, int h)
 
 int initDisplay()
 {
+	vid_width.setupCvar();
+	vid_height.setupCvar();
 	return 1;
 }

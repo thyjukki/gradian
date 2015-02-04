@@ -16,14 +16,6 @@ void inputCallback(GLFWwindow* window, int key, int scancode, int action, int mo
 		debugPrint("we pressed E\n");
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS) {
-		if (bDepthClampingActive)
-			glDisable(GL_DEPTH_CLAMP);
-		else
-			glEnable(GL_DEPTH_CLAMP);
-
-		bDepthClampingActive = !bDepthClampingActive;
-	}
 }
 
 int initInput()

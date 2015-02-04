@@ -6,16 +6,19 @@
 ** Jussi Joki (judejoki@gmail.com)
 ******************************************************************/
 
+#include <iostream>
+#include <exception>
+using namespace std;
 
-void renderScene();
+class MyException : public exception
+{
+public:
+	const char  *what;
+	MyException(string msg)
+	{
+		this->what = msg.c_str();
+	}
 
-void reshape(GLFWwindow* window, int w, int h);
+};
 
-
-int initShaders();
-int initDisplay();
-
-extern Cvar vid_width;
-extern Cvar vid_height;
-
-extern std::map<std::string, Shader *> shaderList;
+// TODO(Get this to work)

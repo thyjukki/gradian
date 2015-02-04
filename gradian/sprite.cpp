@@ -48,7 +48,7 @@ void Sprite::setupSprite(glTexture texture, float x, float y, int width, int hei
 
 void Sprite::Draw(Shader *s)
 {
-	glm::mat4 projection = glm::ortho(0.0f, (float)window_width, (float)window_height, 0.0f, -1.0f, 1.0f);
+	glm::mat4 projection = glm::ortho(0.0f, vid_width.toFloat(), vid_height.toFloat(), 0.0f, -1.0f, 1.0f);
 
 	glm::mat4 model;
 	model = glm::translate(model, glm::vec3(this->origin, 0.0f));

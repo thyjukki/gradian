@@ -11,9 +11,7 @@
 #include "common.hpp"
 
 
-// TODO(Jukki) Move to better place
-int window_width = 1920;
-int window_height = 1080;
+
 
 
 int glInitWindow()
@@ -31,7 +29,7 @@ int glInitWindow()
 
 	// TODO(Jukki) Save window data to better place maybe?
 	// Maeybe put this to better place, remember to load the data from a file
-	gradian.main_window = glfwCreateWindow(window_width, window_height, "Gradian WIP", nullptr, nullptr);
+	gradian.main_window = glfwCreateWindow(vid_width.toInt(), vid_height.toInt(), "Gradian WIP", nullptr, nullptr);
 
 
 	glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
@@ -54,7 +52,7 @@ int glInitWindow()
 	}
 
 	// Init viewport
-	reshape(gradian.main_window, window_width, window_height);
+	reshape(gradian.main_window, vid_width.toInt(), vid_height.toInt());
 
 	debugPrint("glInitWindow done\n");
 	return 1;

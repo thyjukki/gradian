@@ -36,17 +36,30 @@ int main()
 
 	while (running && !error)
 	{
-		if (!glfwWindowShouldClose(gradian.main_window))
+		try
 		{
-			glfwPollEvents();
+			if (!glfwWindowShouldClose(gradian.main_window))
+			{
+				glfwPollEvents();
 
 
-			//TODO(Jukki) Well, prety much everything
-			renderScene();
-
-			glfwSwapBuffers(gradian.main_window);
+				//TODO(Jukki) Well, prety much everything
+				renderScene();
+				glfwSwapBuffers(gradian.main_window);
+			}
+			else running = false;
 		}
-		else running = false;
+		catch (MyException& e)
+		{
+			std::cout << "MyException caught " << std::endl;
+			std::cout << e.what << std::endl;
+		}
+		catch (std::exception& e)
+		{
+			errorPrint(e.what());
+			error = true;
+			//Other errors
+		}
 	}
 
 	glfwTerminate();

@@ -6,16 +6,19 @@
 ** Jussi Joki (judejoki@gmail.com)
 ******************************************************************/
 
+#include "common.hpp"
 
-void renderScene();
+map<string, Cvar *> cvarList;
 
-void reshape(GLFWwindow* window, int w, int h);
+void Cvar::setupCvar()
+{
+	if (cvarList.count(this->name))
+	{
+		throw new MyException("Tried to define allready defined cvar " + this->name);
+		return;
+	}
+	
+	this->baseValue = this->value;
 
-
-int initShaders();
-int initDisplay();
-
-extern Cvar vid_width;
-extern Cvar vid_height;
-
-extern std::map<std::string, Shader *> shaderList;
+	cvarList[this->name] = this;
+}

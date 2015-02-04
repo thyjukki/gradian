@@ -23,6 +23,12 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+// Exception
+#include "exception.hpp"
+
+// Console Variables
+#include "cvar.hpp"
+
 // Math and Usefull utilities
 #include "math.hpp"
 
