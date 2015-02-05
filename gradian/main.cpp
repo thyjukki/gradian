@@ -12,7 +12,7 @@
 // Common includes
 #include "common.hpp"
 
-int glInitWindow();
+int glInitGL();
 
 Gradian gradian;
 
@@ -25,12 +25,12 @@ int main()
 	// TODO(Jukki) Error handling if inits fail
 	try
 	{
-		if (!initCvars()
-			|| !glInitWindow()
+		if (!initCvars() //make sure cvars are loaded first!!!
+			|| !initDisplay()
+			|| !glInitGL()
 			|| !initInput()
 			|| !initShaders()
 			|| !initModels()
-			|| !initDisplay()
 			/*|| !initText()*/)
 			error = true;
 	}

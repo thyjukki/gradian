@@ -8,8 +8,9 @@
 
 #include "common.hpp"
 
-Cvar vid_width = Cvar("vid_width", "Stores windows width", 800, SAVE);
-Cvar vid_height = Cvar("vid_height", "Stores windows height", 600, SAVE);
+Cvar *vid_width;
+Cvar *vid_height;
+Cvar *vid_fullscreen;
 /*
 	void reshape (w, h)
 
@@ -17,8 +18,8 @@ Cvar vid_height = Cvar("vid_height", "Stores windows height", 600, SAVE);
 */
 void reshape(GLFWwindow* window, int w, int h)
 {
-	vid_height = h;
-	vid_width = w;
+	*vid_height = h;
+	*vid_width = w;
 	if (h == 0)
 		h = 1;
 
@@ -27,5 +28,37 @@ void reshape(GLFWwindow* window, int w, int h)
 
 int initDisplay()
 {
+	// Init glfw first and set up window
+	if (glfwInit() != GL_TRUE)
+	{
+		errorPrint("ERROR: glfwInit failed\n");
+		return 0;
+	}
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+	// TODO(Jukki) Save window data to better place maybe?
+	// Maeybe put this to better place, remember to load the data from a file
+	if (vid_fullscreen->toInt() == 1)
+		gradian.main_window = glfwCreateWindow(vid_width->toInt(), vid_height->toInt(), "Gradian WIP", glfwGetPrimaryMonitor(), nullptr);
+	else
+		gradian.main_window = glfwCreateWindow(vid_width->toInt(), vid_height->toInt(), "Gradian WIP", nullptr, nullptr);
+
+
+	glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+
+	glfwSetWindowSizeCallback(gradian.main_window, reshape);
+	if (!gradian.main_window)
+	{
+		errorPrint("ERROR: glfwCreateWindow failed\n");
+		return 0;
+	}
+	glfwMakeContextCurrent(gradian.main_window);
+
+
+	// Init viewport
+	reshape(gradian.main_window, vid_width->toInt(), vid_height->toInt());
+
 	return 1;
 }
