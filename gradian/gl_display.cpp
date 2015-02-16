@@ -27,15 +27,8 @@ void reshape(GLFWwindow* window, int w, int h)
 
 	glViewport(0, 0, w, h);
 }
-
-void error_callback(int error, const char* description)
-{
-	errorPrint("GLFW error " + to_string(error) + ": " + description + "\n");
-}
-
 int initDisplay()
 {
-	glfwSetErrorCallback(error_callback);
 
 	// Init glfw first and set up window
 	if (glfwInit() != GL_TRUE)

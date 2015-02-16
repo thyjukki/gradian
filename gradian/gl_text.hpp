@@ -5,3 +5,6 @@
 ** If you found this code without proper credit please contact me
 ** Jussi Joki (judejoki@gmail.com)
 ******************************************************************/
+int initText();
+
+void render_text(int x, int y, string s);

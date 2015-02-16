@@ -34,7 +34,5 @@ int initInput()
 	glfwSetCursorPosCallback(gradian.main_window, mousePosCallback);
 
 	glfwSetInputMode(gradian.main_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
-	debugPrint("initInput done\n");
 	return 1;
 }

@@ -26,10 +26,10 @@ glTexture TextureFromFile(string path)
 
 	glGenTextures(1, &texture.id);
 
-	unsigned char* image = SOIL_load_image(path.c_str(), &texture.width, &texture.height, 0, SOIL_LOAD_RGB);
+	unsigned char* image = SOIL_load_image(path.c_str(), &texture.width, &texture.height, 0, SOIL_LOAD_RGBA);
 	// Assign texture to ID
 	glBindTexture(GL_TEXTURE_2D, texture.id);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture.width, texture.height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture.width, texture.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	texture.type = normal; // TODO(Jukki) diferent texture types maybe????

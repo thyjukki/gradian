@@ -14,6 +14,12 @@
 
 
 
+void glfw_error_callback(int error, const char* description)
+{
+	errorPrint("GLFW error " + to_string(error) + ": " + description + "\n");
+}
+
+
 int glInitGL()
 {
 	// Init GLEW
@@ -24,4 +30,6 @@ int glInitGL()
 		return 0;
 	}
 	return 1;
+
+	glfwSetErrorCallback(glfw_error_callback);
 }

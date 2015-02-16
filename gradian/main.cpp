@@ -31,7 +31,8 @@ int main()
 			|| !initInput()
 			|| !initShaders()
 			|| !initModels()
-			|| !initDraw())
+			|| !initDraw()
+			|| !initText())
 			error = true;
 	}
 	catch (MyException& e){

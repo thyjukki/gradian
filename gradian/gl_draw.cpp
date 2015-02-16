@@ -89,6 +89,8 @@ void renderScene()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+
+	render_text(5, 5, "The Quick Brown Fox Jumps Over The Lazy Dog");
 	drawCursor();
 
 	glDisable2D();

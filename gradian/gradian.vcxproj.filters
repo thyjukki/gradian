@@ -117,6 +117,9 @@
     <Image Include="Textures\awesomeface.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
+    <Image Include="Textures\charset.tga">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="Fonts\arial.ttf">
