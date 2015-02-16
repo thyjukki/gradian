@@ -14,9 +14,11 @@ void reshape(GLFWwindow* window, int w, int h);
 
 int initShaders();
 int initDisplay();
+int initDraw();
 
 extern Cvar *vid_width;
 extern Cvar *vid_height;
 extern Cvar *vid_fullscreen;
+extern Cvar *vid_monitor;
 
 extern std::map<std::string, Shader *> shaderList;

@@ -11,13 +11,12 @@
 Sprite *test_object;
 Sprite *test_object2;
 
-void Sprite::setupSprite(glTexture texture, float x, float y, int width, int height, float angle)
+void Sprite::setupSprite(glTexture texture, int width, int height, float angle)
 {
 	this->height = width;
 	this->width = height;
 	this->angle = angle;
 	this->texture = texture;
-	this->origin = glm::vec2(x, y);
 	this->size = glm::vec2(width, height);
 	this->color = glm::vec4(1, 1, 1, 1);
 
@@ -46,12 +45,13 @@ void Sprite::setupSprite(glTexture texture, float x, float y, int width, int hei
 	glBindVertexArray(0);
 }
 
-void Sprite::Draw(Shader *s)
+void Sprite::Draw(Shader *s, int x, int y)
 {
 	glm::mat4 projection = glm::ortho(0.0f, vid_width->toFloat(), vid_height->toFloat(), 0.0f, -1.0f, 1.0f);
 
 	glm::mat4 model;
-	model = glm::translate(model, glm::vec3(this->origin, 0.0f));
+	glm::vec2 origin = glm::vec2(x, y);
+	model = glm::translate(model, glm::vec3(origin, 0.0f));
 
 	model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
 	model = glm::rotate(model, this->angle, glm::vec3(0.0f, 0.0f, 1.0f));

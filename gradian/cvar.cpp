@@ -57,8 +57,14 @@ void setupCvars()
 	vid_width = new Cvar("vid_width", "Stores windows width", 800, SAVE);
 	vid_height = new Cvar("vid_height", "Stores windows height", 600, SAVE);
 	vid_fullscreen = new Cvar("vid_fullscreen", "Is the game run on windowed (0), full screen (1) or windowed fullscreen (2)", 0, SAVE);
+	vid_monitor = new Cvar("vid_monitor", "Chose which monitor to use for fullscreen (0 is primary display)", 0, SAVE);
 }
 
+
+void saveCvars()
+{
+
+}
 
 int initCvars()
 {

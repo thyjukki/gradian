@@ -11,6 +11,8 @@
 Cvar *vid_width;
 Cvar *vid_height;
 Cvar *vid_fullscreen;
+Cvar *vid_monitor;
+
 /*
 	void reshape (w, h)
 
@@ -26,8 +28,15 @@ void reshape(GLFWwindow* window, int w, int h)
 	glViewport(0, 0, w, h);
 }
 
+void error_callback(int error, const char* description)
+{
+	errorPrint("GLFW error " + to_string(error) + ": " + description + "\n");
+}
+
 int initDisplay()
 {
+	glfwSetErrorCallback(error_callback);
+
 	// Init glfw first and set up window
 	if (glfwInit() != GL_TRUE)
 	{
@@ -41,7 +50,22 @@ int initDisplay()
 	// TODO(Jukki) Save window data to better place maybe?
 	// Maeybe put this to better place, remember to load the data from a file
 	if (vid_fullscreen->toInt() == 1)
-		gradian.main_window = glfwCreateWindow(vid_width->toInt(), vid_height->toInt(), "Gradian WIP", glfwGetPrimaryMonitor(), nullptr);
+	{
+		int count;
+		GLFWmonitor** monitors = glfwGetMonitors(&count);
+		int monitorIndex = vid_monitor->toInt();
+		if (count < monitorIndex + 1)
+		{
+			monitorIndex = 0;
+		}
+		const GLFWvidmode* mode = glfwGetVideoMode(monitors[monitorIndex]);
+		glfwWindowHint(GLFW_RED_BITS, mode->redBits);
+		glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
+		glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
+		glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
+
+		gradian.main_window = glfwCreateWindow(vid_width->toInt(), vid_height->toInt(), "Gradian WIP", monitors[monitorIndex], nullptr);
+	}
 	else
 		gradian.main_window = glfwCreateWindow(vid_width->toInt(), vid_height->toInt(), "Gradian WIP", nullptr, nullptr);
 

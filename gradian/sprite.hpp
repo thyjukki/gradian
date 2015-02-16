@@ -16,7 +16,6 @@ public:
 	int width;
 	int height;
 	float angle;
-	glm::vec2 origin;
 	glm::vec2 size;
 	glm::vec4 color;
 
@@ -25,31 +24,27 @@ public:
 
 	Sprite(glTexture texture)
 	{
-		setupSprite(texture, 0, 0, texture.width, texture.height, 0.0);
+		setupSprite(texture, texture.width, texture.height, 0.0);
 	}
-	Sprite(glTexture texture, float x, float y)
+	Sprite(glTexture texture, float angle)
 	{
-		setupSprite(texture, x, y, texture.width, texture.height, 0.0);
+		setupSprite(texture, texture.width, texture.height, angle);
 	}
-	Sprite(glTexture texture, float x, float y, float angle)
+	Sprite(glTexture texture, int width, int height)
 	{
-		setupSprite(texture, x, y, texture.width, texture.height, angle);
+		setupSprite(texture, width, height, 0.0);
 	}
-	Sprite(glTexture texture, float x, float y, int width, int height)
+	Sprite(glTexture texture, int width, int height, float angle)
 	{
-		setupSprite(texture, x, y, width, height, 0.0);
-	}
-	Sprite(glTexture texture, float x, float y, int width, int height, float angle)
-	{
-		setupSprite(texture, x, y, width, height, angle);
+		setupSprite(texture, width, height, angle);
 
 	}
 
-	void Draw(Shader *s);
+	void Draw(Shader *s, int x, int y);
 
 private:
 	GLuint VBO, VAO, EBO;
-	void setupSprite(glTexture texture, float x, float y, int width, int height, float angle);
+	void setupSprite(glTexture texture, int width, int height, float angle);
 };
 
 

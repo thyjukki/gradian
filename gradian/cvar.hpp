@@ -132,3 +132,4 @@ public:
 
 
 extern int initCvars();
+extern void saveCvars();

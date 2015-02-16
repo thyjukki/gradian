@@ -7,6 +7,19 @@
 ******************************************************************/
 #include "common.hpp"
 
+Sprite *mouseCursor;
+
+//-----------------------------------------------------------------------------
+// Name: glEnable2D
+// Desc: Enabled 2D primitive rendering by setting up the appropriate orthographic
+//               perspectives and matrices.
+//-----------------------------------------------------------------------------
+void drawCursor()
+{
+	mouseCursor->Draw(shaderList["test"], (int)cursorLocation.x, (int)cursorLocation.y);
+	//test_object->Draw(shaderList["test"], 0, 0);
+}
+
 
 //-----------------------------------------------------------------------------
 // Name: glEnable2D
@@ -56,13 +69,10 @@ void glDisable2D(void)
 }
 
 
-/*
------------
-renderScene
------------
-
-Render the whole game, one bit a time.
-*/
+//-----------------------------------------------------------------------------
+// Name: renderScene
+// Desc: Render the whole game, one bit a time.
+//-----------------------------------------------------------------------------
 void renderScene()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -72,12 +82,27 @@ void renderScene()
 	//beging 2d drawing
 	glEnable2D();
 
-	test_object2->Draw(shaderList["test"]);
-	test_object->Draw(shaderList["test"]);
+	//test_object2->Draw(shaderList["test"], 0, 0);
+	//test_object->Draw(shaderList["test"], 100, 100);
 	//End 2d drawing
 	//glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	drawCursor();
+
 	glDisable2D();
+}
+
+
+//-----------------------------------------------------------------------------
+// Name: initDraw
+// Desc: Render the whole game, one bit a time.
+//-----------------------------------------------------------------------------
+int initDraw()
+{
+	glTexture cursor = TextureFromFile("awesomeface.png");
+	mouseCursor = new Sprite(cursor, 20, 20);
+
+	return 1;
 }
