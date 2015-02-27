@@ -118,8 +118,6 @@
   <ItemGroup>
     <None Include="Shaders\test.frag" />
     <None Include="Shaders\test.vs" />
-    <None Include="shaders\text.frag" />
-    <None Include="shaders\text.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\awesomeface.png" />

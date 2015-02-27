@@ -93,7 +93,7 @@ Shader::Shader(string vertexPath, string fragmentPath, GLuint type, string name)
 int initShaders()
 {
 	Shader *test = new Shader("Shaders/test.vs", "Shaders/test.frag", SHADER_2D, "test");
-	Shader *text = new Shader("Shaders/text.vs", "Shaders/text.frag", SHADER_2D, "text");
+	//Shader *text = new Shader("Shaders/text.vs", "Shaders/text.frag", SHADER_2D, "text"); // TODO(Jukki) we might need this laterz...
 
 
 	return 1;

@@ -106,12 +106,6 @@
     <None Include="Shaders\test.vs">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="shaders\text.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="shaders\text.vs">
-      <Filter>Shaders</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\awesomeface.png">
