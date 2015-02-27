@@ -63,7 +63,7 @@ int main()
 				nbFrames++;
 				if (currentTime - lastTime >= 1.0){ // If last prinf() was more than 1 sec ago
 					// printf and reset timer
-					debugPrint(to_string(1000.0 / double(nbFrames)) + " ms/frame");
+					debugPrint(to_string(1000.0 / double(nbFrames)) + " ms/frame, " + to_string(nbFrames) + " FPS");
 					nbFrames = 0;
 					lastTime += 1.0;
 				}

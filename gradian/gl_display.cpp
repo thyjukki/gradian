@@ -12,6 +12,7 @@ Cvar *vid_width;
 Cvar *vid_height;
 Cvar *vid_fullscreen;
 Cvar *vid_monitor;
+Cvar *vid_vsync;
 
 /*
 	void reshape (w, h)
@@ -81,6 +82,10 @@ int initDisplay()
 	}
 	glfwMakeContextCurrent(gradian.main_window);
 
+	if (vid_vsync->isTrue())
+		glfwSwapInterval(1);
+	else
+		glfwSwapInterval(0);
 
 	// Init viewport
 	reshape(gradian.main_window, vid_width->toInt(), vid_height->toInt());

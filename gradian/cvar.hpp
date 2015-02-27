@@ -128,6 +128,14 @@ public:
 	{
 		return this->value;
 	}
+
+	bool isTrue()
+	{
+		if (this->toInt() > 0)
+			return true;
+		else
+			return false;
+	}
 };
 
 
