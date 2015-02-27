@@ -13,21 +13,21 @@ vector<glTexture> gl_textures;
 
 glTexture TextureFromFile(string path)
 {
-
+	string truePath = (MAINDIR + path); // TODO(Jukki) do this better
 	//first check that we havent allready loaded the texture
 	for (std::vector<glTexture>::iterator it = gl_textures.begin(); it != gl_textures.end(); ++it)
 	{
-		if (it->path == path)
+		if (it->path == truePath)
 			return *it;
 	}
 	//Generate texture ID and load texture data to struct
 	glTexture texture;
-	texture.path = path;
+	texture.path = truePath;
 
-	unsigned char* image = SOIL_load_image(path.c_str(), &texture.width, &texture.height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image(truePath.c_str(), &texture.width, &texture.height, 0, SOIL_LOAD_RGBA);
 	if (0 == image)
 	{
-		throw LightException("ERROR::SOIL loading error " + std::string(SOIL_last_result()));
+		throw LightException("ERROR::SOIL::" + truePath + " loading error " + std::string(SOIL_last_result()));
 	}
 
 	glGenTextures(1, &texture.id);

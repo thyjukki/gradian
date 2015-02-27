@@ -14,7 +14,7 @@ FT_Face face;
 int initText()
 {
 
-	char_data = TextureFromFile("charset.png");
+	char_data = TextureFromFile("Textures/charset.png");
 	return 1;
 }
 

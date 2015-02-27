@@ -103,7 +103,7 @@ void renderScene()
 //-----------------------------------------------------------------------------
 int initDraw()
 {
-	glTexture cursor = TextureFromFile("awesomeface.png");
+	glTexture cursor = TextureFromFile("Textures/awesomeface.png");
 	mouseCursor = new Sprite(cursor, 20, 20);
 
 	return 1;
