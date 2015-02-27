@@ -14,10 +14,6 @@
 
 
 
-void glfw_error_callback(int error, const char* description)
-{
-	errorPrint("GLFW error " + to_string(error) + ": " + description + "\n");
-}
 
 
 int glInitGL()
@@ -26,10 +22,8 @@ int glInitGL()
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
 	{
-		errorPrint("ERROR: glewInit failed\n");
+		throw HardException("ERROR::glewInit failed");
 		return 0;
 	}
 	return 1;
-
-	glfwSetErrorCallback(glfw_error_callback);
 }

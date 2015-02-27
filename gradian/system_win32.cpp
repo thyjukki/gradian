@@ -13,13 +13,24 @@ int WINAPI WinMain (HINSTANCE hInstance,
 
 void debugPrint(std::string message)
 {
-	OutputDebugStringA(message.c_str());
+	OutputDebugStringA((message + "\n").c_str());
 }
 
 // TODO(Jukki) Make proper error message
 void errorPrint(std::string message)
 {
-	OutputDebugStringA(message.c_str());
+	std::string Message = message + "\n";
+	OutputDebugStringA(Message.c_str());
+
+	std::wstring widestr = std::wstring(Message.begin(), Message.end());
+	LPCWSTR output = widestr.c_str();
+
+	MessageBox(
+		NULL,
+		output,
+		L"Hard Exception",
+		MB_ICONEXCLAMATION | MB_OK
+		);
 }
 
 #endif

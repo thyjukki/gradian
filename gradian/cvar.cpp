@@ -10,6 +10,7 @@
 
 #include <fstream>
 #include <boost/algorithm/string.hpp>
+
 map<string, Cvar *> cvarList;
 
 using namespace std;
@@ -45,7 +46,7 @@ void loadConfig()
 			}
 			else
 			{
-				debugPrint("Unknown cvar in config file " + cvarName + "\n");
+				debugPrint("Unknown cvar in config file " + cvarName);
 			}
 		}
 	}

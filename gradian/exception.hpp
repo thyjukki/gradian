@@ -10,10 +10,21 @@
 #include <exception>
 using namespace std;
 
-class MyException :public exception{
+//Hard exeption does casuse game to shutdown
+class HardException :public exception{
 public:
-	MyException(const string m = "my custom exception") :msg(m){}
-	//~MyException(void);
+	HardException(const string m = "HardException") :msg(m){}
+
+	const char* what(){ return msg.c_str(); }
+private:
+	string msg;
+};
+
+//Light exeption does not casuse game to shutdown (for example trying to load a nonexistent texture)
+class LightException :public exception{ 
+public:
+	LightException(const string m = "LightException") :msg(m){}
+
 	const char* what(){ return msg.c_str(); }
 private:
 	string msg;

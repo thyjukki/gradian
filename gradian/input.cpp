@@ -14,7 +14,7 @@ glm::vec2 cursorLocation;
 void inputCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	if (key == GLFW_KEY_E && action == GLFW_PRESS)
-		debugPrint("we pressed E\n");
+		debugPrint("we pressed E");
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
 }

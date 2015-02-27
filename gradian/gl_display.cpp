@@ -27,13 +27,21 @@ void reshape(GLFWwindow* window, int w, int h)
 
 	glViewport(0, 0, w, h);
 }
+
+void glfw_error_callback(int error, const char* description)
+{
+	throw HardException("ERROR::GLFW error " + to_string(error) + ": " + description);
+}
+
 int initDisplay()
 {
 
+
+	glfwSetErrorCallback(glfw_error_callback);
 	// Init glfw first and set up window
 	if (glfwInit() != GL_TRUE)
 	{
-		errorPrint("ERROR: glfwInit failed\n");
+		throw HardException("ERROR::glfwInit failed");
 		return 0;
 	}
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -68,7 +76,7 @@ int initDisplay()
 	glfwSetWindowSizeCallback(gradian.main_window, reshape);
 	if (!gradian.main_window)
 	{
-		errorPrint("ERROR: glfwCreateWindow failed\n");
+		throw HardException("ERROR::glfwCreateWindow failed");
 		return 0;
 	}
 	glfwMakeContextCurrent(gradian.main_window);

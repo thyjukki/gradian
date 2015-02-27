@@ -36,7 +36,7 @@ Shader::Shader(string vertexPath, string fragmentPath, GLuint type)
 	}
 	catch (exception e)
 	{
-		throw MyException("ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ");
+		throw HardException("ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ");
 	}
 	const GLchar* vShaderCode = vertexCode.c_str();
 	const GLchar * fShaderCode = fragmentCode.c_str();
@@ -53,10 +53,8 @@ Shader::Shader(string vertexPath, string fragmentPath, GLuint type)
 	if (!success)
 	{
 		glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-		cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << endl;
-		debugPrint("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n");
-		debugPrint(infoLog);
-		debugPrint("\n");
+
+		throw HardException("ERROR::SHADER::VERTEX::COMPILATION_FAILED" + std::string(infoLog));
 	}
 	// Fragment Shader
 	fragment = glCreateShader(GL_FRAGMENT_SHADER);
@@ -67,10 +65,8 @@ Shader::Shader(string vertexPath, string fragmentPath, GLuint type)
 	if (!success)
 	{
 		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-		cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << endl;
-		debugPrint("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n");
-		debugPrint(infoLog);
-		debugPrint("\n");
+
+		throw HardException("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED" + std::string(infoLog));
 	}
 	// Shader Program
 	this->Program = glCreateProgram();
@@ -82,10 +78,8 @@ Shader::Shader(string vertexPath, string fragmentPath, GLuint type)
 	if (!success)
 	{
 		glGetProgramInfoLog(this->Program, 512, NULL, infoLog);
-		cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << endl;
-		debugPrint("ERROR::SHADER::PROGRAM::LINKING_FAILED\n");
-		debugPrint(infoLog);
-		debugPrint("\n");
+
+		throw HardException("ERROR::SHADER::PROGRAM::LINKING_FAILED" + std::string(infoLog));
 	}
 	// Delete the shaders as they're linked into our program now and no longer necessery
 	glDeleteShader(vertex);

@@ -51,15 +51,17 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_WINDOWS;D_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>L:\boost_1_57_0;L:\freetype-2.5.5\include;L:\SOIL\includes;L:\glm-0.9.6.1;L:\glfw-3.0.3\include;L:\glew-1.11.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\boost_1_57_0\include;L:\freetype-2.5.5\include;L:\SOIL\includes;L:\glm-0.9.6.1;L:\glfw-3.0.3\include;L:\glew-1.11.0\include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>L:\freetype-2.5.5\libs;L:\SOIL\lib;L:\glfw-3.0.3\lib-msvc120;L:\glew-1.11.0\lib\Release\Win32</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>L:\boost_1_57_0\lib;L:\freetype-2.5.5\libs;L:\SOIL\lib;L:\glfw-3.0.3\lib-msvc120;L:\glew-1.11.0\lib\Release\Win32</AdditionalLibraryDirectories>
       <AdditionalDependencies>winmm.lib;ws2_32.lib;opengl32.lib;glew32s.lib;glu32.lib;gdi32.lib;glfw3.lib;soil.lib;freetype255.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -72,15 +74,17 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>L:\boost_1_57_0;L:\freetype-2.5.5\include;L:\SOIL\includes;L:\glm-0.9.6.1;L:\glfw-3.0.3\include;L:\glew-1.11.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>L:\boost_1_57_0\include;L:\freetype-2.5.5\include;L:\SOIL\includes;L:\glm-0.9.6.1;L:\glfw-3.0.3\include;L:\glew-1.11.0\include</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>L:\freetype-2.5.5\libs;L:\SOIL\lib;L:\glfw-3.0.3\lib-msvc120;L:\glew-1.11.0\lib\Release\Win32</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>L:\boost_1_57_0\lib;L:\freetype-2.5.5\libs;L:\SOIL\lib;L:\glfw-3.0.3\lib-msvc120;L:\glew-1.11.0\lib\Release\Win32</AdditionalLibraryDirectories>
       <AdditionalDependencies>winmm.lib;ws2_32.lib;opengl32.lib;glew32s.lib;glu32.lib;gdi32.lib;glfw3.lib;soil.lib;freetype255.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

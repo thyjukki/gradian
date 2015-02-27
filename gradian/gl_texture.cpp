@@ -24,9 +24,14 @@ glTexture TextureFromFile(string path)
 	glTexture texture;
 	texture.path = path;
 
+	unsigned char* image = SOIL_load_image(path.c_str(), &texture.width, &texture.height, 0, SOIL_LOAD_RGBA);
+	if (0 == image)
+	{
+		throw LightException("ERROR::SOIL loading error " + std::string(SOIL_last_result()));
+	}
+
 	glGenTextures(1, &texture.id);
 
-	unsigned char* image = SOIL_load_image(path.c_str(), &texture.width, &texture.height, 0, SOIL_LOAD_RGBA);
 	// Assign texture to ID
 	glBindTexture(GL_TEXTURE_2D, texture.id);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture.width, texture.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);

@@ -6,9 +6,6 @@
 ** Jussi Joki (judejoki@gmail.com)
 ******************************************************************/
 
-// GL includes
-#include "Shader.hpp"
-
 // Common includes
 #include "common.hpp"
 
@@ -25,18 +22,21 @@ int main()
 	// TODO(Jukki) Error handling if inits fail
 	try
 	{
-		if (!initCvars() //make sure cvars are loaded first!!!
-			|| !initDisplay()
-			|| !glInitGL()
-			|| !initInput()
-			|| !initShaders()
-			|| !initModels()
-			|| !initDraw()
-			|| !initText())
-			error = true;
+		initCvars(); //make sure cvars are loaded first!!!
+		initDisplay();
+		glInitGL();
+		initInput();
+		initShaders();
+		initModels();
+		initDraw();
+		initText();
 	}
-	catch (MyException& e){
+	catch (HardException& e){
 		errorPrint(e.what());
+		error = true;
+	}
+	catch (LightException& e){
+		debugPrint(e.what());
 	}
 	catch (std::exception& e)
 	{
@@ -46,6 +46,9 @@ int main()
 	}
 
 
+	double lastTime = glfwGetTime();
+	int nbFrames = 0;
+
 	while (running && !error)
 	{
 		try
@@ -54,15 +57,30 @@ int main()
 			{
 				glfwPollEvents();
 
+//#ifdef _DEBUG //T TODO(Jukki) Need to fix the problem with debug mode
+				// Measure speed
+				double currentTime = glfwGetTime();
+				nbFrames++;
+				if (currentTime - lastTime >= 1.0){ // If last prinf() was more than 1 sec ago
+					// printf and reset timer
+					debugPrint(to_string(1000.0 / double(nbFrames)) + " ms/frame");
+					nbFrames = 0;
+					lastTime += 1.0;
+				}
+//#endif
 
-				//TODO(Jukki) Well, prety much everything
+				// TODO(Jukki) Well, prety much everything
 				renderScene();
 				glfwSwapBuffers(gradian.main_window);
 			}
 			else running = false;
 		}
-		catch (MyException& e){
+		catch (HardException& e){
 			errorPrint(e.what());
+			error = true;
+		}
+		catch (LightException& e){
+			debugPrint(e.what());
 		}
 		catch (std::exception& e)
 		{
