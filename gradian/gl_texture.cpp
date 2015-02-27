@@ -23,8 +23,9 @@ glTexture TextureFromFile(string path)
 	//Generate texture ID and load texture data to struct
 	glTexture texture;
 	texture.path = truePath;
+	int channels;
 
-	unsigned char* image = SOIL_load_image(truePath.c_str(), &texture.width, &texture.height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image(truePath.c_str(), &texture.width, &texture.height, &channels, SOIL_LOAD_AUTO);
 	if (0 == image)
 	{
 		throw LightException("ERROR::SOIL::" + truePath + " loading error " + std::string(SOIL_last_result()));
@@ -34,7 +35,10 @@ glTexture TextureFromFile(string path)
 
 	// Assign texture to ID
 	glBindTexture(GL_TEXTURE_2D, texture.id);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture.width, texture.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	if (channels == SOIL_LOAD_RGBA)
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture.width, texture.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	if (channels == SOIL_LOAD_RGB)
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture.width, texture.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	glGenerateMipmap(GL_TEXTURE_2D);
 
 	texture.type = normal; // TODO(Jukki) diferent texture types maybe????
