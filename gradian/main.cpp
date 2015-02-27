@@ -13,6 +13,8 @@ int glInitGL();
 
 Gradian gradian;
 
+int allahuakbar;
+//added a nice comment
 
 int main()
 {
@@ -45,7 +47,8 @@ int main()
 		//Other errors
 	}
 
-
+	allahuakbar = 2;
+	errorPrint(to_string(allahuakbar));
 	double lastTime = glfwGetTime();
 	int nbFrames = 0;
 

@@ -12,7 +12,7 @@
 map<string, Shader *> shaderList;
 
 
-Shader::Shader(string vertexPath, string fragmentPath, GLuint type)
+Shader::Shader(string vertexPath, string fragmentPath, GLuint type, string name)
 {
 	this->type = type;
 	// 1. Retrieve the vertex/fragment source code from filePath
@@ -36,7 +36,7 @@ Shader::Shader(string vertexPath, string fragmentPath, GLuint type)
 	}
 	catch (exception e)
 	{
-		throw HardException("ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ");
+		throw HardException("ERROR::SHADER::" + name + "::FILE_NOT_SUCCESFULLY_READ " + std::string(e.what()));
 	}
 	const GLchar* vShaderCode = vertexCode.c_str();
 	const GLchar * fShaderCode = fragmentCode.c_str();
@@ -54,7 +54,7 @@ Shader::Shader(string vertexPath, string fragmentPath, GLuint type)
 	{
 		glGetShaderInfoLog(vertex, 512, NULL, infoLog);
 
-		throw HardException("ERROR::SHADER::VERTEX::COMPILATION_FAILED" + std::string(infoLog));
+		throw HardException("ERROR::SHADER::" + name + "::VERTEX::COMPILATION_FAILED (" + (MAINDIR + vertexPath) + ") " + std::string(infoLog));
 	}
 	// Fragment Shader
 	fragment = glCreateShader(GL_FRAGMENT_SHADER);
@@ -66,7 +66,7 @@ Shader::Shader(string vertexPath, string fragmentPath, GLuint type)
 	{
 		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
 
-		throw HardException("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED" + std::string(infoLog));
+		throw HardException("ERROR::SHADER::" + name + "::FRAGMENT::COMPILATION_FAILED (" + (MAINDIR + fragmentPath) + ") " + std::string(infoLog));
 	}
 	// Shader Program
 	this->Program = glCreateProgram();
@@ -79,11 +79,12 @@ Shader::Shader(string vertexPath, string fragmentPath, GLuint type)
 	{
 		glGetProgramInfoLog(this->Program, 512, NULL, infoLog);
 
-		throw HardException("ERROR::SHADER::PROGRAM::LINKING_FAILED" + std::string(infoLog));
+		throw HardException("ERROR::SHADER::" + name + "::PROGRAM::LINKING_FAILED" + std::string(infoLog));
 	}
 	// Delete the shaders as they're linked into our program now and no longer necessery
 	glDeleteShader(vertex);
 	glDeleteShader(fragment);
+	shaderList[name] = this;
 }
 
 
@@ -91,11 +92,9 @@ Shader::Shader(string vertexPath, string fragmentPath, GLuint type)
 
 int initShaders()
 {
-	Shader *test = new Shader("Shaders/test.vs", "Shaders/test.frag", SHADER_2D);
-	Shader *text = new Shader("Shaders/text.vs", "Shaders/text.frag", SHADER_2D);
+	Shader *test = new Shader("Shaders/test.vs", "Shaders/test.frag", SHADER_2D, "test");
+	Shader *text = new Shader("Shaders/text.vs", "Shaders/text.frag", SHADER_2D, "text");
 
-	shaderList["test"] = test;
-	shaderList["text"] = text;
 
 	return 1;
 }
