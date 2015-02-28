@@ -98,7 +98,7 @@
     <ClCompile Include="gl_texture.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="sprite.cpp" />
+    <ClCompile Include="gl_sprite.cpp" />
     <ClCompile Include="system_win32.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -111,9 +111,9 @@
     <ClInclude Include="Gradian.hpp" />
     <ClInclude Include="input.hpp" />
     <ClInclude Include="math.hpp" />
-    <ClInclude Include="Shader.hpp" />
-    <ClInclude Include="GLObject.hpp" />
-    <ClInclude Include="sprite.hpp" />
+    <ClInclude Include="gl_shader.hpp" />
+    <ClInclude Include="gl_object.hpp" />
+    <ClInclude Include="gl_sprite.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\image.frag" />

@@ -34,8 +34,8 @@
 
 
 // Shader loading
-#include "shader.hpp"
-#include "GLObject.hpp"
+#include "gl_shader.hpp"
+#include "gl_object.hpp"
 
 #include "gl_text.hpp"
 
@@ -52,7 +52,7 @@
 #include "gl_texture.hpp"
 
 // Sprites
-#include "sprite.hpp"
+#include "gl_sprite.hpp"
 
 
 

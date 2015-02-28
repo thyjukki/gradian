@@ -51,20 +51,17 @@
     <ClCompile Include="gl_texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cvar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gl_text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gl_sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Gradian.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -77,13 +74,7 @@
     <ClInclude Include="gl_draw.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GLObject.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="gl_texture.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sprite.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="math.hpp">
@@ -96,6 +87,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gl_text.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gl_shader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gl_sprite.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gl_object.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

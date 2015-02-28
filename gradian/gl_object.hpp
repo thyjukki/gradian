@@ -15,7 +15,7 @@
 using namespace std;
 
 #include <GL/glew.h>
-#include "shader.hpp"
+#include "gl_shader.hpp"
 
 extern void debugPrint(std::string message);
 extern void errorPrint(std::string message);
