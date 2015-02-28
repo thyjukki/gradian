@@ -7,4 +7,4 @@
 ******************************************************************/
 int initText();
 
-void render_text(int x, int y, string s);
+void render_text(int x, int y, int sizeX, int sizeY, glm::vec4 color, string s);

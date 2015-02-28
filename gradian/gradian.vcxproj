@@ -116,8 +116,10 @@
     <ClInclude Include="sprite.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\test.frag" />
-    <None Include="Shaders\test.vs" />
+    <None Include="Shaders\image.frag" />
+    <None Include="Shaders\image.vs" />
+    <None Include="Shaders\color.frag" />
+    <None Include="Shaders\color.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\awesomeface.png" />

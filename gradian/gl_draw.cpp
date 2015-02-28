@@ -16,8 +16,8 @@ Sprite *mouseCursor;
 //-----------------------------------------------------------------------------
 void drawCursor()
 {
-	mouseCursor->Draw(shaderList["test"], (int)cursorLocation.x, (int)cursorLocation.y);
-	//test_object->Draw(shaderList["test"], 0, 0);
+	mouseCursor->Draw(shaderList["image"], (int)cursorLocation.x, (int)cursorLocation.y);
+	//test_object->Draw(shaderList["image"], 0, 0);
 }
 
 
@@ -75,22 +75,24 @@ void glDisable2D(void)
 //-----------------------------------------------------------------------------
 void renderScene()
 {
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(0.1f, 0.2f, 0.2f, 0.0f);
 	glClearDepth(1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//beging 2d drawing
 	glEnable2D();
 
-	//test_object2->Draw(shaderList["test"], 0, 0);
-	//test_object->Draw(shaderList["test"], 100, 100);
+	//test_object2->Draw(shaderList["image"], 0, 0);
+	//test_object->Draw(shaderList["image"], 100, 100);
 	//End 2d drawing
 	//glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
-	render_text(5, 5, "The Quick Brown Fox Jumps Over The Lazy Dog");
+	render_text(100, 100, 10, 10, glm::vec4(1, 1, 1, 1), "This is a test string to test if the string is awesome");
+	render_text(100, 110, 10, 10, glm::vec4(0, 0, 1, 1), "It also supports different colors!");
+	render_text(100, 120, 20, 20, glm::vec4(1, 0, 1, 1), "And different sizes!");
 	drawCursor();
 
 	glDisable2D();

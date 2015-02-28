@@ -53,11 +53,11 @@ void Sprite::Draw(Shader *s, int x, int y)
 	glm::vec2 origin = glm::vec2(x, y);
 	model = glm::translate(model, glm::vec3(origin, 0.0f));
 
-	model = glm::translate(model, glm::vec3(0.5f * size.x, 0.5f * size.y, 0.0f));
+	model = glm::translate(model, glm::vec3(0.5f * this->size.x, 0.5f * this->size.y, 0.0f));
 	model = glm::rotate(model, this->angle, glm::vec3(0.0f, 0.0f, 1.0f));
-	model = glm::translate(model, glm::vec3(-0.5f * size.x, -0.5f * size.y, 0.0f));
+	model = glm::translate(model, glm::vec3(-0.5f * this->size.x, -0.5f * this->size.y, 0.0f));
 
-	model = glm::scale(model, glm::vec3(size, 1.0f));
+	model = glm::scale(model, glm::vec3(this->size, 1.0f));
 
 	s->Use();
 	s->SetMatrix4("model", model);

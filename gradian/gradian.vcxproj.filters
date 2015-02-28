@@ -100,10 +100,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\test.frag">
+    <None Include="Shaders\image.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="Shaders\test.vs">
+    <None Include="Shaders\image.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\color.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\color.vs">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

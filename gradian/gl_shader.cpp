@@ -92,8 +92,8 @@ Shader::Shader(string vertexPath, string fragmentPath, GLuint type, string name)
 
 int initShaders()
 {
-	Shader *test = new Shader("Shaders/test.vs", "Shaders/test.frag", SHADER_2D, "test");
-	//Shader *text = new Shader("Shaders/text.vs", "Shaders/text.frag", SHADER_2D, "text"); // TODO(Jukki) we might need this laterz...
+	new Shader("Shaders/image.vs", "Shaders/image.frag", SHADER_2D, "image");
+	new Shader("Shaders/color.vs", "Shaders/color.frag", SHADER_2D, "color"); // TODO(Jukki) we might need this laterz...
 
 
 	return 1;
