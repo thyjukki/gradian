@@ -44,6 +44,7 @@ public:
 
 private:
 	GLuint VBO, VAO, EBO;
+	bool initialized;
 	void setupSprite(glTexture texture, int width, int height, float angle);
 };
 

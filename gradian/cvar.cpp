@@ -46,7 +46,7 @@ void loadConfig()
 			}
 			else
 			{
-				debugPrint("Unknown cvar in config file " + cvarName);
+				Con_Print("Unknown cvar in config file " + cvarName);
 			}
 		}
 	}
@@ -60,6 +60,8 @@ void setupCvars()
 	vid_fullscreen = new Cvar("vid_fullscreen", "Is the game run on windowed (0), full screen (1) or windowed fullscreen (2)", 0, SAVE);
 	vid_monitor = new Cvar("vid_monitor", "Chose which monitor to use for fullscreen (0 is primary display)", 0, SAVE);
 	vid_vsync = new Cvar("vid_vsync", "Turn on vsync or turn it of", 0, SAVE);
+
+	developer = new Cvar("developer", "Turn on developer mode", 0, SAVE);
 }
 
 

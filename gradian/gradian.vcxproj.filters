@@ -22,6 +22,9 @@
     <Filter Include="Resource Files\fonts">
       <UniqueIdentifier>{5ada822e-d6af-41a2-adb5-991e09f188e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Configs">
+      <UniqueIdentifier>{81303458-3ecb-46bc-9db9-acede9c1a4a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -58,6 +61,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gl_sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,6 +104,9 @@
     <ClInclude Include="gl_object.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="console.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\image.frag">
@@ -111,6 +120,12 @@
     </None>
     <None Include="Shaders\color.vs">
       <Filter>Shaders</Filter>
+    </None>
+    <None Include="configs\config.cfg">
+      <Filter>Configs</Filter>
+    </None>
+    <None Include="configs\keys.cfg">
+      <Filter>Configs</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

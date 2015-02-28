@@ -43,10 +43,14 @@ void Sprite::setupSprite(glTexture texture, int width, int height, float angle)
 	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+
+	this->initialized = true;
 }
 
 void Sprite::Draw(Shader *s, int x, int y)
 {
+	if (!this->initialized)
+		throw HardException("ERROR::SPRITE tried to draw unitialized sprite!");
 	glm::mat4 projection = glm::ortho(0.0f, vid_width->toFloat(), vid_height->toFloat(), 0.0f, -1.0f, 1.0f);
 
 	glm::mat4 model;

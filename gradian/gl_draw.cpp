@@ -93,6 +93,9 @@ void renderScene()
 	render_text(100, 100, 10, 10, glm::vec4(1, 1, 1, 1), "This is a test string to test if the string is awesome");
 	render_text(100, 110, 10, 10, glm::vec4(0, 0, 1, 1), "It also supports different colors!");
 	render_text(100, 120, 20, 20, glm::vec4(1, 0, 1, 1), "And different sizes!");
+
+	drawConsole();
+
 	drawCursor();
 
 	glDisable2D();

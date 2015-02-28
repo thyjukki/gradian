@@ -88,6 +88,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="console.cpp" />
     <ClCompile Include="cvar.cpp" />
     <ClCompile Include="gl_display.cpp" />
     <ClCompile Include="gl_draw.cpp" />
@@ -103,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.hpp" />
+    <ClInclude Include="console.hpp" />
     <ClInclude Include="cvar.hpp" />
     <ClInclude Include="exception.hpp" />
     <ClInclude Include="gl_draw.hpp" />
@@ -116,6 +118,8 @@
     <ClInclude Include="gl_sprite.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="configs\config.cfg" />
+    <None Include="configs\keys.cfg" />
     <None Include="Shaders\image.frag" />
     <None Include="Shaders\image.vs" />
     <None Include="Shaders\color.frag" />

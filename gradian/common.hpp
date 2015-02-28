@@ -29,6 +29,9 @@
 // Console Variables
 #include "cvar.hpp"
 
+// Console commands and console itself
+#include "console.hpp"
+
 // Math and Usefull utilities
 #include "math.hpp"
 

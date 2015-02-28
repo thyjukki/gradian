@@ -3,6 +3,8 @@
 #include <string>
 int main();
 
+#include "common.hpp"
+
 int WINAPI WinMain (HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine,
@@ -13,7 +15,8 @@ int WINAPI WinMain (HINSTANCE hInstance,
 
 void debugPrint(std::string message)
 {
-	OutputDebugStringA((message + "\n").c_str());
+	if (developer->isTrue())
+		OutputDebugStringA((message + "\n").c_str());
 }
 
 // TODO(Jukki) Make proper error message

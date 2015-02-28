@@ -6,15 +6,11 @@
 ** Jussi Joki (judejoki@gmail.com)
 ******************************************************************/
 
-//this is temp, needs to be edited when not working.
-#define MAINDIR "../gradian/"
+extern void Con_Execute(string cmd);
 
-class Gradian
-{
-public:
-	GLFWwindow* main_window;
-};
+extern void Con_Print(string msg);
 
-extern Gradian gradian;
 
-extern Cvar *developer;
+extern void initConsole();
+
+extern void drawConsole();
