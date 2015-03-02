@@ -14,3 +14,17 @@ extern void Con_Print(string msg);
 extern void initConsole();
 
 extern void drawConsole();
+
+
+extern Cvar *con_lines;
+
+extern string con_input_line;
+
+enum constatus
+{
+	CONSOLE_OFF,
+	CONSOLE_FULL,
+	CONSOLE_PARTIAL
+};
+
+extern constatus console_status;

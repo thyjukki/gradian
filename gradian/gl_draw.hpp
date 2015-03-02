@@ -16,6 +16,9 @@ int initShaders();
 int initDisplay();
 int initDraw();
 
+void Draw_Rectangle(int x, int y, int width, int height, glm::vec4 color, float angle);
+
+
 extern Cvar *vid_width;
 extern Cvar *vid_height;
 extern Cvar *vid_fullscreen;

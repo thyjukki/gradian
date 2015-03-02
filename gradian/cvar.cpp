@@ -61,7 +61,9 @@ void setupCvars()
 	vid_monitor = new Cvar("vid_monitor", "Chose which monitor to use for fullscreen (0 is primary display)", 0, SAVE);
 	vid_vsync = new Cvar("vid_vsync", "Turn on vsync or turn it of", 0, SAVE);
 
-	developer = new Cvar("developer", "Turn on developer mode", 0, SAVE);
+	con_lines = new Cvar("con_lines", "Turn on vsync or turn it of", 0, SAVE);
+
+	developer = new Cvar("developer", "Turn on developer mode", 22);
 }
 
 

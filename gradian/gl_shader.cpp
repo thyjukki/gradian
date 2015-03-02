@@ -93,7 +93,8 @@ Shader::Shader(string vertexPath, string fragmentPath, GLuint type, string name)
 int initShaders()
 {
 	new Shader("Shaders/image.vs", "Shaders/image.frag", SHADER_2D, "image");
-	new Shader("Shaders/color.vs", "Shaders/color.frag", SHADER_2D, "color"); // TODO(Jukki) we might need this laterz...
+	new Shader("Shaders/color.vs", "Shaders/color.frag", SHADER_2D, "color");
+	new Shader("Shaders/text.vs", "Shaders/text.frag", SHADER_2D, "text");
 
 
 	return 1;

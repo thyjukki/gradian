@@ -127,6 +127,12 @@
     <None Include="configs\keys.cfg">
       <Filter>Configs</Filter>
     </None>
+    <None Include="Shaders\text.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\text.vs">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\awesomeface.png">

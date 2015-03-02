@@ -9,11 +9,78 @@
 
 Sprite *mouseCursor;
 
-//-----------------------------------------------------------------------------
-// Name: glEnable2D
-// Desc: Enabled 2D primitive rendering by setting up the appropriate orthographic
-//               perspectives and matrices.
-//-----------------------------------------------------------------------------
+GLuint rectVAO;
+int rectVertexSetup()
+{
+	GLuint vbo;
+	GLfloat vertices[] = {
+		// Pos
+		0.0f, 1.0f,
+		1.0f, 0.0f,
+		0.0f, 0.0f,
+
+		0.0f, 1.0f,
+		1.0f, 1.0f,
+		1.0f, 0.0f
+	};
+
+	glGenVertexArrays(1, &rectVAO);
+	glGenBuffers(1, &vbo);
+
+	glBindVertexArray(rectVAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+
+	return 1;
+}
+
+/*void render_text(const char *text, float x, float y, float sx, float sy) {
+// TODO(Jukki) text drwawing function here!
+}*/
+
+
+
+// TODO(Jukki) Thease are loaned from quake, please make your own later.
+
+/*
+================
+Draw_Rectangle -- drawa rectangle
+================
+*/
+void Draw_Rectangle(int x, int y, int width, int height, glm::vec4 color, float angle)
+{
+	glm::mat4 projection = glm::ortho(0.0f, vid_width->toFloat(), vid_height->toFloat(), 0.0f, -1.0f, 1.0f);
+
+	glm::mat4 model;
+	glm::vec2 origin = glm::vec2(x, y);
+	model = glm::translate(model, glm::vec3(origin, 0.0f));
+
+	model = glm::translate(model, glm::vec3(0.5f * width, 0.5f * height, 0.0f));
+	model = glm::rotate(model, angle, glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::translate(model, glm::vec3(-0.5f * width, -0.5f * height, 0.0f));
+
+	model = glm::scale(model, glm::vec3(glm::vec2(width, height), 1.0f));
+
+	Shader *s = shaderList["color"];
+	s->Use();
+	s->SetMatrix4("model", model);
+	s->SetMatrix4("projection", projection);
+	s->SetVector4f("spriteColor", color);
+
+	glBindVertexArray(rectVAO);
+
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindVertexArray(0);
+}
+
+
+
 void drawCursor()
 {
 	mouseCursor->Draw(shaderList["image"], (int)cursorLocation.x, (int)cursorLocation.y);
@@ -89,7 +156,6 @@ void renderScene()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-
 	render_text(100, 100, 10, 10, glm::vec4(1, 1, 1, 1), "This is a test string to test if the string is awesome");
 	render_text(100, 110, 10, 10, glm::vec4(0, 0, 1, 1), "It also supports different colors!");
 	render_text(100, 120, 20, 20, glm::vec4(1, 0, 1, 1), "And different sizes!");
@@ -108,6 +174,7 @@ void renderScene()
 //-----------------------------------------------------------------------------
 int initDraw()
 {
+	rectVertexSetup();
 	glTexture cursor = TextureFromFile("Textures/awesomeface.png");
 	mouseCursor = new Sprite(cursor, 20, 20);
 

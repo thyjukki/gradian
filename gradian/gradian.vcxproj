@@ -124,6 +124,8 @@
     <None Include="Shaders\image.vs" />
     <None Include="Shaders\color.frag" />
     <None Include="Shaders\color.vs" />
+    <None Include="Shaders\text.frag" />
+    <None Include="Shaders\text.vs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Textures\awesomeface.png" />

@@ -17,20 +17,16 @@ int initText()
 {
 
 	char_data = TextureFromFile("Textures/charset.tga");
-	
-	GLfloat			frow, fcol, size;
-	frow = (GLfloat)(5*0.0625);
-	fcol = (GLfloat)(5*0.0625);
-	size = (GLfloat)(0.0625);
-	GLfloat vertices[] = {
-		// Pos      // Tex
-		0.0f, 1.0f, fcol, frow + size,
-		1.0f, 0.0f, fcol + size, frow,
-		0.0f, 0.0f, fcol, frow,
 
-		0.0f, 1.0f, fcol, frow + size,
-		1.0f, 1.0f, fcol + size, frow + size,
-		1.0f, 0.0f, fcol + size, frow
+	GLfloat vertices[] = {
+		// Pos
+		0.0f, 1.0f,
+		1.0f, 0.0f,
+		0.0f, 0.0f,
+
+		0.0f, 1.0f,
+		1.0f, 1.0f,
+		1.0f, 0.0f
 	};
 
 	glGenVertexArrays(1, &textVAO);
@@ -42,7 +38,7 @@ int initText()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), (GLvoid*)0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 
@@ -65,27 +61,13 @@ Draw_CharacterQuad -- johnfitz -- seperate function to spit out verts
 void Draw_CharacterQuad(int x, int y, int sizeX, int sizeY, glm::vec4 color, char num)
 {
 	GLfloat				row, col;
-	GLfloat			frow, fcol, size;
+	GLfloat			frow, fcol;
 
 	row = (GLfloat)(num >> 4);
 	col = (GLfloat)(num & 15);
 
 	frow = (GLfloat)(row*0.0625);
 	fcol = (GLfloat)(col*0.0625);
-	size = (GLfloat)(0.0625);
-
-	/*debugPrint("frow " + to_string(frow) + " fcol " + to_string(fcol));
-	glTexCoord2f(fcol, frow);
-	glVertex2f((GLfloat)x, (GLfloat)y);
-	glTexCoord2f(fcol + size, frow);
-	glVertex2f((GLfloat)x + (GLfloat)8.0, (GLfloat)y);
-	glTexCoord2f(fcol + size, fcol, frow + size);
-	glVertex2f((GLfloat)x + (GLfloat)8.0, (GLfloat)y + (GLfloat)8.0);
-	glTexCoord2f(fcol, frow + size);
-	glVertex2f((GLfloat)x, (GLfloat)y + (GLfloat)8.0);*/
-
-
-	glm::mat4 projection = glm::ortho(0.0f, vid_width->toFloat(), vid_height->toFloat(), 0.0f, -1.0f, 1.0f);
 
 	glm::mat4 model;
 	glm::vec2 origin = glm::vec2(x, y);
@@ -97,35 +79,11 @@ void Draw_CharacterQuad(int x, int y, int sizeX, int sizeY, glm::vec4 color, cha
 
 	model = glm::scale(model, glm::vec3(glm::vec2(sizeX, sizeY), 1.0f));
 
-	Shader *s = shaderList["image"];
-	s->Use();
+	Shader *s = shaderList["text"];
 	s->SetMatrix4("model", model);
-	s->SetMatrix4("projection", projection);
-	s->SetVector4f("spriteColor", color);
+	s->SetVector2f("charLoc", glm::vec2(fcol, frow));
 
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, char_data.id);
-
-	glBindVertexArray(textVAO);
-	GLfloat vertices[] = {
-		// Pos      // Tex
-		0.0f, 1.0f, fcol, frow + size,
-		1.0f, 0.0f, fcol + size, frow,
-		0.0f, 0.0f, fcol, frow,
-
-		0.0f, 1.0f, fcol, frow + size,
-		1.0f, 1.0f, fcol + size, frow + size,
-		1.0f, 0.0f, fcol + size, frow
-	};
-	glBindBuffer(GL_ARRAY_BUFFER, textVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
 }
 
 /*
@@ -137,17 +95,27 @@ TODO(Jukki) this whole thing needs to be eventualy replaced
 */
 void render_text(int x, int y, int sizeX, int sizeY, glm::vec4 color, string s)
 {
-	if (y <= -8)
-		return;			// totally off screen
+	Shader *shader = shaderList["text"];
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, char_data.id);
 
-	const char *str = s.c_str();
+	glBindVertexArray(textVAO);
 
-	while (*str)
+	shader->Use();
+
+
+	glm::mat4 projection = glm::ortho(0.0f, vid_width->toFloat(), vid_height->toFloat(), 0.0f, -1.0f, 1.0f);
+	shader->SetMatrix4("projection", projection);
+	shader->SetVector4f("spriteColor", color);
+
+	for (auto str : s)
 	{
-		if (*str != 32) //don't waste verts on spaces
-			Draw_CharacterQuad(x, y, sizeX, sizeY, color, *str);
-		str++;
+		if (str != 32) //don't waste verts on spaces
+			Draw_CharacterQuad(x, y, sizeX, sizeY, color, str);
+
 		x += sizeX;
 	}
+
+	glBindVertexArray(0);
 
 }

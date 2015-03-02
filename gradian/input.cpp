@@ -87,6 +87,19 @@ map<int, keystate> keyList;
 // TODO(Jukki) make this whole thing handled better
 void inputCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
+	if (console_status != CONSOLE_OFF)
+	{
+		if (action == GLFW_PRESS && key == GLFW_KEY_ESCAPE)
+			console_status = CONSOLE_OFF;
+		if (action == GLFW_PRESS && key == GLFW_KEY_ENTER)
+		{
+			Con_Execute(con_input_line);
+			con_input_line = "";
+		}
+		if (action == GLFW_PRESS && key == GLFW_KEY_BACKSPACE)
+			con_input_line.pop_back();
+		return;
+	}
 
 	if (keyList.count(key) > 0)
 	{
@@ -111,6 +124,13 @@ void inputCallback(GLFWwindow* window, int key, int scancode, int action, int mo
 	}
 }
 
+void character_callback(GLFWwindow* window, unsigned int codepoint)
+{
+	if (console_status == CONSOLE_OFF)
+		return;
+
+	con_input_line += codepoint;
+}
 
 void mousePosCallback(GLFWwindow* window, double xpos, double ypos)
 {
@@ -187,6 +207,8 @@ int initInput()
 	loadInputConfig();
 	cursorLocation = glm::vec2(0, 0);
 	glfwSetKeyCallback(gradian.main_window, inputCallback);
+
+	glfwSetCharCallback(gradian.main_window, character_callback);
 
 	glfwSetCursorPosCallback(gradian.main_window, mousePosCallback);
 

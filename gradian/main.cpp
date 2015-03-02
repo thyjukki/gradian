@@ -55,7 +55,7 @@ int main()
 			{
 				glfwPollEvents();
 
-#ifdef _DEBUG //T TODO(Jukki) Need to fix the problem with debug mode
+//#ifdef _DEBUG //T TODO(Jukki) Need to fix the problem with debug mode
 				// Measure speed
 				double currentTime = glfwGetTime();
 				nbFrames++;
@@ -65,7 +65,7 @@ int main()
 					nbFrames = 0;
 					lastTime += 1.0;
 				}
-#endif
+//#endif
 
 				// TODO(Jukki) Well, prety much everything
 				renderScene();
