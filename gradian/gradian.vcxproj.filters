@@ -25,6 +25,9 @@
     <Filter Include="Configs">
       <UniqueIdentifier>{81303458-3ecb-46bc-9db9-acede9c1a4a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Maps">
+      <UniqueIdentifier>{24a57df3-825e-48b7-aad6-191cb99d346c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -64,6 +67,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,6 +113,21 @@
     <ClInclude Include="console.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="gameboard.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="coord.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="unit.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="type.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="result.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\image.frag">
@@ -132,6 +153,9 @@
     </None>
     <None Include="Shaders\text.vs">
       <Filter>Shaders</Filter>
+    </None>
+    <None Include="Maps\test.gmf">
+      <Filter>Maps</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

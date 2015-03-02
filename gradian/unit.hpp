@@ -5,17 +5,21 @@
 ** If you found this code without proper credit please contact me
 ** Jussi Joki (judejoki@gmail.com)
 ******************************************************************/
-
-extern void Con_Execute(string cmd);
-
-extern void Con_Print(string msg);
+#pragma once
 
 
-extern void initConsole();
+// 2D sprite class, there are multiple ways to define a sprite.
+class Unit
+{
+public:
+	Type *baseType;
 
-extern void drawConsole();
+	Unit()
+	{
+
+	}
 
 
-extern Cvar *con_lines;
+private:
 
-extern string con_input_line;
+};

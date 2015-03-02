@@ -13,6 +13,35 @@ int glInitGL();
 
 Gradian gradian;
 
+
+void testGame()
+{
+	try
+	{
+		GameBoard *board = loadMap("Maps/test.gmf");
+
+		if (board->getCoord(1, 1))
+			debugPrint(board->getCoord(1, 1)->toString());
+
+		if (board->getCoord(2, 2))
+			debugPrint(board->getCoord(2, 2)->toString());
+
+		delete board;
+	}
+	catch (HardException& e){
+		errorPrint(e.what());
+	}
+	catch (LightException& e){
+		errorPrint(e.what());
+	}
+
+
+
+
+
+}
+
+
 int main()
 {
 	bool running = true;
@@ -46,6 +75,9 @@ int main()
 
 	double lastTime = glfwGetTime();
 	int nbFrames = 0;
+
+
+	//testGame();
 
 	while (running && !error)
 	{

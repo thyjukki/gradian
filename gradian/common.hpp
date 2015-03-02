@@ -23,6 +23,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+
+// Result
+#include "result.hpp"
+
 // Exception
 #include "exception.hpp"
 
@@ -45,6 +49,14 @@
 // Drawing
 #include "gl_draw.hpp"
 
+
+// Game files
+#include "type.hpp"
+#include "unit.hpp"
+#include "coord.hpp"
+#include "gameboard.hpp"
+
+
 //Main core class
 #include "Gradian.hpp"
 
@@ -56,8 +68,6 @@
 
 // Sprites
 #include "gl_sprite.hpp"
-
-
 
 //debuging and error message handlers, depends on system we are running on
 void debugPrint(std::string message);

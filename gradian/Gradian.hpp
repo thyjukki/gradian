@@ -7,12 +7,22 @@
 ******************************************************************/
 
 //this is temp, needs to be edited when not working.
-#define MAINDIR "../gradian/"
+#define MAINDIR std::string("../gradian/")
 
+enum gameState
+{
+	MENU,
+	LOADING,
+	GAME
+};
 class Gradian
 {
 public:
-	GLFWwindow* main_window;
+	GLFWwindow	*main_window;
+	gameState	state;
+	GameBoard	*board;
+	string		map;
+	bool		consoleActive;
 };
 
 extern Gradian gradian;

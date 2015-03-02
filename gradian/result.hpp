@@ -6,16 +6,23 @@
 ** Jussi Joki (judejoki@gmail.com)
 ******************************************************************/
 
-extern void Con_Execute(string cmd);
+#pragma once
+#include <string>
 
-extern void Con_Print(string msg);
+class Result
+{
+public:
+	bool succes;
+
+	std::string message;
+
+	Result(std::string message, bool succes)
+	{
+		this->message = message;
+		this->succes = succes;
+	}
 
 
-extern void initConsole();
+private:
 
-extern void drawConsole();
-
-
-extern Cvar *con_lines;
-
-extern string con_input_line;
+};
