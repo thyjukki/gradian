@@ -1,0 +1,24 @@
+#info
+name = test
+x = 2
+
+y = 2
+
+
+#textures
+
+1=tile.png
+2=tile2.png
+
+#tiles
+
+1-1-1-2
+
+2-1-1-1
+
+
+
+
+1-2-2-1
+
+2-2-1-1
