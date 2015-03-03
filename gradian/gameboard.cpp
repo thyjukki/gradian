@@ -17,7 +17,6 @@ using namespace boost;
 
 
 string currentMap;
-GameBoard *currentBoard;
 
 enum blocks
 {
@@ -247,7 +246,7 @@ GameBoard *loadMap(string path)
 void unloadMap()
 {
 	// TODO(Jukki) We might need to do more here? (inform rest of the players about disconnet, unload ai, unload textures?? and so on)
-	delete currentBoard;
+	delete gradian.board;
 	gradian.state = MENU;
 }
 
@@ -272,7 +271,7 @@ void setupMap(string map)
 
 	if (board)
 	{
-		currentBoard = board;
+		gradian.board = board;
 		gradian.state = GAME;
 		Con_Print("Map " + map + " loaded");
 		gradian.consoleActive = false;

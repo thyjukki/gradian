@@ -26,3 +26,5 @@ extern Cvar *vid_monitor;
 extern Cvar *vid_vsync;
 
 extern std::map<std::string, Shader *> shaderList;
+
+extern int viewXOffset, viewYOffset;

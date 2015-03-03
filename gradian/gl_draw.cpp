@@ -9,6 +9,8 @@
 
 Sprite *mouseCursor;
 
+int viewXOffset, viewYOffset;
+
 GLuint rectVAO;
 int rectVertexSetup()
 {
@@ -40,6 +42,10 @@ int rectVertexSetup()
 	return 1;
 }
 
+glm::vec4 getRGBA(int R, int G, int B, int A)
+{
+	return glm::vec4(R / 256.0, G / 256.0, B / 256.0, A / 256.0);
+}
 /*void render_text(const char *text, float x, float y, float sx, float sy) {
 // TODO(Jukki) text drwawing function here!
 }*/
@@ -136,6 +142,33 @@ void glDisable2D(void)
 }
 
 
+#define COORD_SIZE 100
+void drawGame()
+{
+	if (!gradian.board)
+		return;
+
+	int width = gradian.board->width;
+	int height = gradian.board->height;
+
+	for (int X = 1; X <= width; X++)
+	{
+		for (int Y = 1; Y <= height; Y++)
+		{
+			int x = X - 1;
+			int y = Y - 1;
+			Coord *coord = gradian.board->getCoord(X, Y);
+			glm::vec4 color;
+			if (coord->terrain == GRASS)
+				color = getRGBA(63, 230, 48, 256);
+			else
+				color = getRGBA(0, 166, 255, 256);
+			Draw_Rectangle(x*COORD_SIZE + viewXOffset, y*COORD_SIZE + viewYOffset, COORD_SIZE, COORD_SIZE, color, 0);
+		}
+	}
+}
+
+
 //-----------------------------------------------------------------------------
 // Name: renderScene
 // Desc: Render the whole game, one bit a time.
@@ -156,9 +189,8 @@ void renderScene()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	render_text(100, 100, 10, 10, glm::vec4(1, 1, 1, 1), "This is a test string to test if the string is awesome");
-	render_text(100, 110, 10, 10, glm::vec4(0, 0, 1, 1), "It also supports different colors!");
-	render_text(100, 120, 20, 20, glm::vec4(1, 0, 1, 1), "And different sizes!");
+	if (gradian.state == GAME)
+		drawGame();
 
 	drawConsole();
 

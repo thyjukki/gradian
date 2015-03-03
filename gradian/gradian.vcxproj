@@ -91,6 +91,7 @@
     <ClCompile Include="console.cpp" />
     <ClCompile Include="cvar.cpp" />
     <ClCompile Include="gameboard.cpp" />
+    <ClCompile Include="cl_parse.cpp" />
     <ClCompile Include="gl_display.cpp" />
     <ClCompile Include="gl_draw.cpp" />
     <ClCompile Include="gl_init.cpp" />
@@ -104,6 +105,7 @@
     <ClCompile Include="system_win32.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="cl_parse.hpp" />
     <ClInclude Include="common.hpp" />
     <ClInclude Include="console.hpp" />
     <ClInclude Include="coord.hpp" />

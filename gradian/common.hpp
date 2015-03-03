@@ -49,6 +49,8 @@
 // Drawing
 #include "gl_draw.hpp"
 
+// client files
+#include "cl_parse.hpp"
 
 // Game files
 #include "type.hpp"

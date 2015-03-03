@@ -99,6 +99,8 @@ int main()
 				}
 //#endif
 
+				parseGameInput();
+
 				// TODO(Jukki) Well, prety much everything
 				renderScene();
 				glfwSwapBuffers(gradian.main_window);

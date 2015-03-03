@@ -21,16 +21,26 @@ enum actionType
 	KEY_COMMAND,
 	KEY_TOGGLE,
 	KEY_INCREASE,
-	KEY_DECREASE
+	KEY_DECREASE,
+	KEY_ONDOWN,
+	KEY_ONHOLD,
+	KEY_ONRELEASE
 };
+
+struct keystate;
+
+
+void sendGameInput(bool keydown, string cmd, keystate *state);
+
 class KeyAction
 {
 public:
 	actionType type;
-	string command;
+	keystate *state;
 	KeyAction(actionType tp)
 	{
 		this->type = tp;
+		this->state = state;
 	}
 
 	virtual void buttonDown()=0;
@@ -38,8 +48,9 @@ public:
 	virtual void buttonUp()=0;
 };
 
-class KeyActionConsole: public KeyAction
+class KeyActionConsole : public KeyAction
 {
+	string command;
 public:
 	KeyActionConsole(actionType tp, string cmd) : KeyAction(tp)
 	{
@@ -74,6 +85,26 @@ public:
 	}
 };
 
+class KeyActionGame : public KeyAction
+{
+	string command;
+public:
+	KeyActionGame(actionType tp, string cmd) : KeyAction(tp)
+	{
+		this->command = cmd;
+	}
+
+	void buttonDown()
+	{
+		sendGameInput(true, this->command, state);
+	}
+
+	void buttonUp()
+	{
+		sendGameInput(false, this->command, state);
+	}
+};
+
 struct keystate
 {
 	bool down;
@@ -83,6 +114,30 @@ struct keystate
 };
 
 map<int, keystate> keyList;
+
+
+
+
+
+void sendGameInput(bool keyDown, string cmd, keystate *state)
+{
+	if (cmd == "left")
+		gameInput[K_LEFT] = keyDown;
+	else if (cmd == "right")
+		gameInput[K_RIGHT] = keyDown;
+	else if (cmd == "up")
+		gameInput[K_UP] = keyDown;
+	else if (cmd == "down")
+		gameInput[K_DOWN] = keyDown;
+}
+
+
+
+
+
+
+
+
 
 // TODO(Jukki) make this whole thing handled better
 void inputCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -104,6 +159,7 @@ void inputCallback(GLFWwindow* window, int key, int scancode, int action, int mo
 		return;
 	}
 
+	// TODO(Jukki) Add diferent setup for menu here!
 	if (keyList.count(key) > 0)
 	{
 
@@ -190,10 +246,27 @@ void loadInputConfig()
 						bind.erase(0, 1);
 						action = new KeyActionConsole(KEY_TOGGLE, bind);
 					}
+					else if (bind[0] == '!') //Holding button
+					{
+						bind.erase(0, 1);
+						action = new KeyActionGame(KEY_ONHOLD, bind);
+					}
+					else if (bind[0] == '-') //only on down
+					{
+						bind.erase(0, 1);
+						action = new KeyActionGame(KEY_ONDOWN, bind);
+					}
+					else if (bind[0] == '+') //only when released
+					{
+						bind.erase(0, 1);
+						action = new KeyActionGame(KEY_ONRELEASE, bind);
+					}
 					else
 						action = new KeyActionConsole(KEY_COMMAND, bind);
 
 					keyList[keyNum] = { false, 0.0f, 0.0f, action };
+
+					action->state = &keyList[keyNum];
 				}
 				catch (boost::bad_lexical_cast const&) {
 					Con_Print("Error: keys.cfg input string was not valid");

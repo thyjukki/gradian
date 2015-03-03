@@ -6,27 +6,21 @@
 ** Jussi Joki (judejoki@gmail.com)
 ******************************************************************/
 
-//this is temp, needs to be edited when not working.
-#define MAINDIR std::string("../gradian/")
+Cvar *cl_scrollspeed;
 
-enum gameState
+#include "common.hpp"
+
+bool gameInput[4];
+
+
+void parseGameInput()
 {
-	MENU,
-	LOADING,
-	GAME
-};
-class Gradian
-{
-public:
-	GLFWwindow	*main_window;
-	gameState	state;
-	GameBoard	*board;
-	string		map;
-	bool		consoleActive;
-
-	double deltaTime;
-};
-
-extern Gradian gradian;
-
-extern Cvar *developer;
+	if (gameInput[K_LEFT])
+		viewXOffset--;
+	if (gameInput[K_RIGHT])
+		viewXOffset++;
+	if (gameInput[K_UP])
+		viewYOffset--;
+	if (gameInput[K_DOWN])
+		viewYOffset++;
+}

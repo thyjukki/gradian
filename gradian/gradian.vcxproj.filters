@@ -22,10 +22,10 @@
     <Filter Include="Resource Files\fonts">
       <UniqueIdentifier>{5ada822e-d6af-41a2-adb5-991e09f188e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Configs">
+    <Filter Include="Resource Files\Configs">
       <UniqueIdentifier>{81303458-3ecb-46bc-9db9-acede9c1a4a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Maps">
+    <Filter Include="Resource Files\Maps">
       <UniqueIdentifier>{24a57df3-825e-48b7-aad6-191cb99d346c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -70,6 +70,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gameboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cl_parse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,6 +131,9 @@
     <ClInclude Include="result.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cl_parse.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\image.frag">
@@ -143,10 +149,10 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="configs\config.cfg">
-      <Filter>Configs</Filter>
+      <Filter>Resource Files\Configs</Filter>
     </None>
     <None Include="configs\keys.cfg">
-      <Filter>Configs</Filter>
+      <Filter>Resource Files\Configs</Filter>
     </None>
     <None Include="Shaders\text.frag">
       <Filter>Shaders</Filter>
@@ -155,7 +161,7 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="Maps\test.gmf">
-      <Filter>Maps</Filter>
+      <Filter>Resource Files\Maps</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

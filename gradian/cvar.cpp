@@ -63,6 +63,8 @@ void setupCvars()
 
 	con_lines = new Cvar("con_lines", "Turn on vsync or turn it of", 0, SAVE);
 
+	cl_scrollspeed = new Cvar("cl_scrollspeed", "How fast doe player scroll the screen", 10, SAVE);
+
 	developer = new Cvar("developer", "Turn on developer mode", 22);
 }
 
