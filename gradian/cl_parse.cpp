@@ -6,9 +6,10 @@
 ** Jussi Joki (judejoki@gmail.com)
 ******************************************************************/
 
-Cvar *cl_scrollspeed;
 
 #include "common.hpp"
+
+Cvar *cl_scrollspeed;
 
 bool gameInput[4];
 
@@ -16,11 +17,11 @@ bool gameInput[4];
 void parseGameInput()
 {
 	if (gameInput[K_LEFT])
-		viewXOffset--;
+		viewXOffset -= cl_scrollspeed->toInt()*gradian.deltaTime;
 	if (gameInput[K_RIGHT])
-		viewXOffset++;
+		viewXOffset += cl_scrollspeed->toInt()*gradian.deltaTime;
 	if (gameInput[K_UP])
-		viewYOffset--;
+		viewYOffset -= cl_scrollspeed->toInt()*gradian.deltaTime;
 	if (gameInput[K_DOWN])
-		viewYOffset++;
+		viewYOffset += cl_scrollspeed->toInt()*gradian.deltaTime;
 }

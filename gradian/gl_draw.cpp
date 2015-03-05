@@ -9,7 +9,7 @@
 
 Sprite *mouseCursor;
 
-int viewXOffset, viewYOffset;
+double viewXOffset, viewYOffset;
 
 GLuint rectVAO;
 int rectVertexSetup()
@@ -61,7 +61,7 @@ Draw_Rectangle -- drawa rectangle
 */
 void Draw_Rectangle(int x, int y, int width, int height, glm::vec4 color, float angle)
 {
-	glm::mat4 projection = glm::ortho(0.0f, vid_width->toFloat(), vid_height->toFloat(), 0.0f, -1.0f, 1.0f);
+	glm::mat4 projection = glm::ortho(0.0f, vid_width->toFloat(), vid_height->toFloat(), 0.0f, -1.0f, 1.0f); // TODO(Jukki) Move this to own location mayabe?
 
 	glm::mat4 model;
 	glm::vec2 origin = glm::vec2(x, y);
@@ -143,6 +143,7 @@ void glDisable2D(void)
 
 
 #define COORD_SIZE 100
+#define TOOLBOX_SIZE 200
 void drawGame()
 {
 	if (!gradian.board)
@@ -151,20 +152,70 @@ void drawGame()
 	int width = gradian.board->width;
 	int height = gradian.board->height;
 
+
 	for (int X = 1; X <= width; X++)
 	{
 		for (int Y = 1; Y <= height; Y++)
 		{
-			int x = X - 1;
-			int y = Y - 1;
+			int x = 0;
+			int y = 0;
+
+			int maxX = COORD_SIZE*width;
+			int maxY = COORD_SIZE*height;
 			Coord *coord = gradian.board->getCoord(X, Y);
+
+			if (viewXOffset < 0.0)
+				viewXOffset = 0.0;
+			if (viewYOffset < 0.0)
+				viewYOffset = 0.0;
+
+			int extraX = maxX - vid_width->toInt();
+			int extraY = maxY - (vid_height->toInt() - TOOLBOX_SIZE);
+
+			if (viewXOffset > extraX)
+				viewXOffset = extraX;
+			if (viewYOffset > extraY)
+				viewYOffset = extraY;
+
+			if (maxX <= vid_width->toInt())
+				viewXOffset = 0.0;
+
+			if (maxY <= (vid_height->toInt() - TOOLBOX_SIZE))
+				viewYOffset = 0.0;
+			
+			if (width*COORD_SIZE <= vid_width->toInt())
+				x = (X - 1)*COORD_SIZE;
+			else
+			{
+				x = (X - 1)*COORD_SIZE - (int)viewXOffset;
+
+				if (x >= vid_width->toInt()
+					|| (x + COORD_SIZE) <= 0)
+					continue;
+			}
+
+			if (height*COORD_SIZE <= (vid_height->toInt()) - TOOLBOX_SIZE)
+				y = (Y - 1)*COORD_SIZE;
+			else
+			{
+				y = (Y - 1)*COORD_SIZE - (int)viewYOffset;
+
+				if (y >= (vid_height->toInt() - TOOLBOX_SIZE)
+					|| (y + COORD_SIZE) <= 0)
+					continue;
+			}
+
 			glm::vec4 color;
 			if (coord->terrain == GRASS)
 				color = getRGBA(63, 230, 48, 256);
 			else
 				color = getRGBA(0, 166, 255, 256);
-			Draw_Rectangle(x*COORD_SIZE + viewXOffset, y*COORD_SIZE + viewYOffset, COORD_SIZE, COORD_SIZE, color, 0);
+
+			Draw_Rectangle(x, y, COORD_SIZE, COORD_SIZE, color, 0);
+
+
 		}
+		Draw_Rectangle(0, (vid_height->toInt() - TOOLBOX_SIZE), vid_width->toInt(), TOOLBOX_SIZE, glm::vec4(1,1,1,1), 0);
 	}
 }
 

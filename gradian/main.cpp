@@ -74,6 +74,7 @@ int main()
 	}
 
 	double lastTime = glfwGetTime();
+	double lastFrameTime = lastTime;
 	int nbFrames = 0;
 
 
@@ -90,6 +91,8 @@ int main()
 //#ifdef _DEBUG //T TODO(Jukki) Need to fix the problem with debug mode
 				// Measure speed
 				double currentTime = glfwGetTime();
+				gradian.deltaTime = currentTime - lastFrameTime;
+				lastFrameTime = currentTime;
 				nbFrames++;
 				if (currentTime - lastTime >= 1.0){ // If last prinf() was more than 1 sec ago
 					// printf and reset timer
